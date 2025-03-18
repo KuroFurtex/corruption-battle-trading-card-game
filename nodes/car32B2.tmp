@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://qw55s0g4ta01"]
+
+[ext_resource type="Texture2D" uid="uid://dwvfalavnt5vo" path="res://sprites/back.png" id="1_m6kvp"]
+[ext_resource type="Script" path="res://nodes/card.gd" id="1_w0mf4"]
+[ext_resource type="Texture2D" uid="uid://bjju2g3bsa6bw" path="res://sprites/c/roy-t-w.jpg" id="2_di1t8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ltl0"]
+size = Vector2(128, 176)
+
+[node name="card" type="Area2D"]
+scale = Vector2(1, 1)
+script = ExtResource("1_w0mf4")
+front = ExtResource("2_di1t8")
+pos = null
+ang = null
+
+[node name="touch" type="CollisionShape2D" parent="."]
+position = Vector2(-3.8147e-06, -3.8147e-06)
+shape = SubResource("RectangleShape2D_3ltl0")
+
+[node name="back" type="TextureRect" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -88.0
+offset_right = 64.0
+offset_bottom = 88.0
+pivot_offset = Vector2(64, 88)
+mouse_filter = 2
+texture = ExtResource("1_m6kvp")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="front" type="TextureRect" parent="."]
+offset_left = -64.0
+offset_top = -88.0
+offset_right = 64.0
+offset_bottom = 88.0
+pivot_offset = Vector2(64, 88)
+mouse_filter = 2
+texture = ExtResource("2_di1t8")
+expand_mode = 1
+stretch_mode = 4
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

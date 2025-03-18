@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqalfbj8pd8o4"]
+
+[ext_resource type="PackedScene" uid="uid://qw55s0g4ta01" path="res://nodes/card.tscn" id="1_afn4e"]
+[ext_resource type="Script" path="res://main.gd" id="1_cglfm"]
+[ext_resource type="Texture2D" uid="uid://8cnwmgjln6qu" path="res://sprites/c/shork.png" id="3_aknoq"]
+[ext_resource type="Texture2D" uid="uid://du5qwf7afljnk" path="res://sprites/c/fedkiller.jpg" id="4_gj2yr"]
+[ext_resource type="Texture2D" uid="uid://b0oi782sto27a" path="res://sprites/d/false-alarm.jpg" id="5_5fefe"]
+[ext_resource type="Texture2D" uid="uid://dotb2r52x1dyy" path="res://sprites/bg.jpg" id="6_bjulx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_naiha"]
+bg_color = Color(1, 1, 1, 0.196078)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q034"]
+bg_color = Color(1, 1, 1, 0.196078)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0, 0, 1)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_cglfm")
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.0911214, 0.0911215, 0.0911214, 1)
+position = Vector2(960, 544)
+scale = Vector2(1.85, 1.864)
+texture = ExtResource("6_bjulx")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 32.0
+offset_top = 560.0
+offset_right = 1792.0
+offset_bottom = 896.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_naiha")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 1792.0
+offset_bottom = 528.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7q034")
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="card" parent="." instance=ExtResource("1_afn4e")]
+position = Vector2(960, 992)
+title = "Shork"
+attack = 4500
+defense = 3000
+groupA = "KC"
+front = ExtResource("3_aknoq")
+
+[node name="card4" parent="." instance=ExtResource("1_afn4e")]
+position = Vector2(960, 96)
+title = "Shork"
+attack = 4500
+defense = 3000
+groupA = "KC"
+flipped = true
+front = ExtResource("3_aknoq")
+ownedBy = "Opponent"
+
+[node name="card2" parent="." instance=ExtResource("1_afn4e")]
+position = Vector2(832, 992)
+title = "FedKiller"
+attack = 3500
+defense = 1500
+groupA = "KC"
+groupB = "TJC"
+front = ExtResource("4_gj2yr")
+
+[node name="card3" parent="." instance=ExtResource("1_afn4e")]
+position = Vector2(1088, 992)
+title = "KuroFurtex"
+type = "Distrupt"
+description = "One of your opponent's corrupter cannot attack this turn"
+attack = 0
+defense = 0
+front = ExtResource("5_5fefe")
+
+[node name="playerHand" type="Node2D" parent="."]
+position = Vector2(960, 992)
+
+[node name="return" type="Marker2D" parent="playerHand"]
+position = Vector2(0, -96)
+
+[node name="Show" type="Button" parent="playerHand"]
+offset_left = 832.0
+offset_top = -176.0
+offset_right = 960.0
+offset_bottom = -96.0
+toggle_mode = true
+text = "Show"
+
+[node name="opponentHand" type="Node2D" parent="."]
+position = Vector2(960, 96)
+
+[node name="return" type="Marker2D" parent="opponentHand"]
+position = Vector2(0, 96)
